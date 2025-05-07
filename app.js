@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const userRouter = require("./routes/userRoutes");
 const menuRouter = require("./routes/menuRoute");
 const errorMiddleware = require("./middleware/error");
+const orderRoute = require("./routes/orderRoute");
 
 const app = express();
 const corsOptions = {
@@ -26,6 +27,7 @@ app.get("/", (req, res, next) => {
 
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/menu", menuRouter)
+app.use("/api/v1/order",orderRoute)
 
 app.use(errorMiddleware)
 
