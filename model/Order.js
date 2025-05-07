@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema(
   {
     restaurantId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
+     type:String,
+      required: true,
     },
     items: [
       {
