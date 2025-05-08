@@ -38,6 +38,10 @@ const login = async (req, res, next) => {
     if (!isMatch) {
       return next(new ErrorHandler("Invalid email or password", 401));
     }
+    if (user.status === "Deactive") {
+        return next(new ErrorHandler("Your account is deactivated. Please contact support.", 403));
+    }
+    
     sendToken(user, 200, res, "Login successful");
   } catch (error) {
     return next(new ErrorHandler(error.message, 500));
@@ -118,6 +122,8 @@ const updateInfo = catchAsyncErrors(async(req,res,next)=>{
         return next(new ErrorHandler(error.message, 500));
     }
 })
+
+
 
 // user logout
 const logout = catchAsyncErrors(async (req,res,next)=>{
